@@ -1,14 +1,11 @@
 import React from 'react'
-import { render } from 'react-dom';
 
 function AccountBalance() {
-    <>
-        return (
-            <div>
-                Balance: (this.props.accountBalance)
-            </div>
-        )
-    </>
+    return (
+        <div>
+            Balance: {props.AccountBalance}
+        </div>
+    )
 }
 
 export default AccountBalance;
