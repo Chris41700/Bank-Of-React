@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 
 function Debits(props) {
     const { accountBalance, setDebits, debits } = props;
-    const { newDebits, setNewDebits } = useState([]);
-    const { description, setDescription } = useState("");
-    const { amount, setAmount } = useState(0);
+    const [ newDebits, setNewDebits ] = useState([]);
+    const [ description, setDescription ] = useState("");
+    const [ amount, setAmount ] = useState(0);
 
 
     const getDebits = async () => {
@@ -23,16 +23,18 @@ function Debits(props) {
 
     const onChangeDescription = (e) => {
         setDescription(e.target.value);
+        console.log(e.target.value);
     }
 
     const onChangeAmount = (e) => {
         setAmount(parseInt(e.target.value));
+        console.log(e.target.value);
     }
 
     const addDebit = () => {
-        const newDebits = [...debits];
-        newDebits.push([amount, description]);
-        setNewDebits(newDebits);
+        const newAddition = [...newDebits];
+        newAddition.push({amount, description});
+        setNewDebits(newAddition);
     }
 
     useEffect(() => {
@@ -44,7 +46,7 @@ function Debits(props) {
             <h1>Debits</h1>
 
             {debits.map((element) => {
-                return(
+                return (
                     <div key = { element.id }>
                         <ul>
                             <li>{ element.description }</li>
@@ -55,13 +57,19 @@ function Debits(props) {
                 )
             })}
 
-            <div>
-                <ul>
-                    <li></li>
-                    <li>$</li>
-                    <li></li>
-                </ul>
-            </div>
+            {newDebits.map((element, index) => {
+                return (
+                    <div>
+                        <ul>
+                            <li>{ element.description }</li>
+                            <li>${ element.amount }</li>
+                            <li>{ element.date }</li>
+                        </ul>
+
+                        { accountBalance } += { element.account };
+                    </div>
+                )
+            })}
 
             <h3>Account Balance: ${accountBalance}</h3>
             <input onChange={onChangeDescription} type="text" placeholder="Description" />
