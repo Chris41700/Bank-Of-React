@@ -7,8 +7,8 @@ function LogIn(props) {
 
     const handleChange = (e) => {
         const updatedUser = {...user}
-        const inputField = e.target.userName
-        const inputValue = e.target.inputValue
+        const inputField = e.target.name
+        const inputValue = e.target.value
         updatedUser[inputField] = inputValue
         
         setUser(updatedUser)
@@ -23,12 +23,11 @@ function LogIn(props) {
     if (redirect) {
         return (<Navigate to='/userProfile'/>)
     }
-
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="userName"> User Name</label>
+                    <label htmlFor="userName">User Name</label>
                     <input type="text" name="userName" onChange={handleChange} value={user.userName} />
                 </div>
                 <div>

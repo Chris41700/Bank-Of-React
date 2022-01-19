@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 function UserProfile(props) {
     return (
         <div>
-            <h1>User Proifle</h1>
+            <h1>User Profile</h1>
 
             <div>Username: {props.userName}</div>
             <div>Member Since: {props.memberSince}</div>

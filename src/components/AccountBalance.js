@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-function AccountBalance() {
+function AccountBalance(props) {
     return (
         <div>
-            Balance: {props.AccountBalance}
+            Balance: ${props.accountBalance}
         </div>
     )
 }
