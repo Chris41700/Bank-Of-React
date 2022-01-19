@@ -9,6 +9,7 @@ import Debits from "./components/Debits"
 function App() {
   const [accountBalance, setAccountBalance] = useState(14568.27);
   const [currentUser, setCurrentUser] = useState({ userName: "bob_loblaw", memberSince: '08/23/99' });
+  const [debits, setDebits] = useState([]);
 
   const mockLogIn = (logInInfo) => {
     const newUser = {...currentUser};
@@ -22,7 +23,7 @@ function App() {
         <Route path='/' element={<Home accountBalance={accountBalance}/>}/>
         <Route path="/userProfile" element={<UserProfile userName={currentUser.userName} memberSince={currentUser.memberSince}/>}/>
         <Route path='/login' element={<LogIn user={currentUser} mockLogIn={mockLogIn}/>}/>
-        <Route path="/debits" element={<Debits />}/>
+        <Route path="/debits" element={<Debits accountBalance={accountBalance} setDebits={setDebits} debits={debits}/>}/>
       </Routes>
     </BrowserRouter>
   )
