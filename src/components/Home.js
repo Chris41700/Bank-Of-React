@@ -9,6 +9,7 @@ function Home(props) {
             <h1>Bank of React</h1>
 
             <div><Link to='/userProfile'>User Profile</Link></div>
+            <div><Link to='/login'>Login</Link></div>
             <div><Link to='/debits'>Debits</Link></div>
             <div><Link to='/credits'>Credits</Link></div>
 

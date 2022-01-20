@@ -5,7 +5,7 @@ function Debits(props) {
     const [ newDebits, setNewDebits ] = useState([]);
     const [ description, setDescription ] = useState("");
     const [ amount, setAmount ] = useState(0);
-
+    const currentDate = new Date().toISOString();
 
     const getDebits = async () => {
         try {
@@ -27,13 +27,13 @@ function Debits(props) {
     }
 
     const onChangeAmount = (e) => {
-        setAmount(parseInt(e.target.value));
+        setAmount(parseFloat(e.target.value));
         console.log(e.target.value);
     }
 
     const addDebit = () => {
         const newAddition = [...newDebits];
-        newAddition.push({amount, description});
+        newAddition.push({amount, description, currentDate});
         setAccountBalance((amt) => amt+=amount) 
         setNewDebits(newAddition);
     }
@@ -64,7 +64,7 @@ function Debits(props) {
                         <ul>
                             <li>{ element.description }</li>
                             <li>${ element.amount }</li>
-                            <li>{ element.date }</li>
+                            <li>{ element.currentDate }</li>
                         </ul>
                     </div>
                 )

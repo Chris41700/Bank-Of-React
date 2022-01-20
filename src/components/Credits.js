@@ -5,6 +5,7 @@ function Credits(props) {
     const [ newCredits, setNewCredits ] = useState([]);
     const [ description, setDescription ] = useState("");
     const [ amount, setAmount ] = useState(0);
+    const currentDate = new Date().toISOString();
 
     const getCredits = async () => {
         try {
@@ -26,13 +27,13 @@ function Credits(props) {
     }
 
     const onChangeAmount = (e) => {
-        setAmount(parseInt(e.target.value));
+        setAmount(parseFloat(e.target.value));
         console.log(e.target.value);
     }
 
     const addDebit = () => {
         const newAddition = [...newCredits];
-        newAddition.push({amount, description});
+        newAddition.push({amount, description, currentDate});
         setAccountBalance((amt) => amt-=amount) 
         setNewCredits(newAddition);
     }
@@ -63,7 +64,7 @@ function Credits(props) {
                         <ul>
                             <li>{ element.description }</li>
                             <li>${ element.amount }</li>
-                            <li>{ element.date }</li>
+                            <li>{ element.currentDate }</li>
                         </ul>
                     </div>
                 )
@@ -72,7 +73,7 @@ function Credits(props) {
             <h3>Account Balance: ${accountBalance}</h3>
             <input onChange={onChangeDescription} type="text" placeholder="Description" />
             <input onChange={onChangeAmount} type="number" placeholder="Amount" />
-            <button onClick={addDebit}>New Creditnp</button>
+            <button onClick={addDebit}>New Credit</button>
         </div>
     )
 }
