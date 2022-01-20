@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 function Debits(props) {
-    const { accountBalance, setDebits, debits } = props;
+    const { setAccountBalance, accountBalance, setDebits, debits } = props;
     const [ newDebits, setNewDebits ] = useState([]);
     const [ description, setDescription ] = useState("");
     const [ amount, setAmount ] = useState(0);
@@ -34,6 +34,7 @@ function Debits(props) {
     const addDebit = () => {
         const newAddition = [...newDebits];
         newAddition.push({amount, description});
+        setAccountBalance((amt) => amt+=amount) 
         setNewDebits(newAddition);
     }
 
@@ -65,8 +66,6 @@ function Debits(props) {
                             <li>${ element.amount }</li>
                             <li>{ element.date }</li>
                         </ul>
-
-                        { accountBalance } += { element.account };
                     </div>
                 )
             })}

@@ -25,8 +25,8 @@ function App() {
         <Route path='/' element={<Home accountBalance={accountBalance}/>}/>
         <Route path="/userProfile" element={<UserProfile userName={currentUser.userName} memberSince={currentUser.memberSince}/>}/>
         <Route path='/login' element={<LogIn user={currentUser} mockLogIn={mockLogIn}/>}/>
-        <Route path="/debits" element={<Debits accountBalance={accountBalance} setDebits={setDebits} debits={debits}/>}/>
-        <Route path="/credits" element={<Credits accountBalance={accountBalance} setCredits={setCredits} credits={credits}/>}></Route>
+        <Route path="/debits" element={<Debits accountBalance={accountBalance} setAccountBalance={setAccountBalance} setDebits={setDebits} debits={debits}/>}/>
+        <Route path="/credits" element={<Credits accountBalance={accountBalance} setAccountBalance={setAccountBalance} setCredits={setCredits} credits={credits}/>}></Route>
       </Routes>
     </BrowserRouter>
   )

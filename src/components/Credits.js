@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 function Credits(props) {
-    const { accountBalance, setCredits, credits } = props;
+    const { setAccountBalance, accountBalance, setCredits, credits } = props;
+    const [ newCredits, setNewCredits ] = useState([]);
+    const [ description, setDescription ] = useState("");
+    const [ amount, setAmount ] = useState(0);
 
     const getCredits = async () => {
         try {
@@ -17,6 +20,23 @@ function Credits(props) {
         }
     }
 
+    const onChangeDescription = (e) => {
+        setDescription(e.target.value);
+        console.log(e.target.value);
+    }
+
+    const onChangeAmount = (e) => {
+        setAmount(parseInt(e.target.value));
+        console.log(e.target.value);
+    }
+
+    const addDebit = () => {
+        const newAddition = [...newCredits];
+        newAddition.push({amount, description});
+        setAccountBalance((amt) => amt-=amount) 
+        setNewCredits(newAddition);
+    }
+
     useEffect(() => {
         getCredits();
     }, []);
@@ -26,16 +46,33 @@ function Credits(props) {
             <h1>Credits</h1>
 
             {credits.map((element) => {
-                    return (
-                        <div key = { element.id }>
-                            <ul>
-                                <li>{ element.description }</li>
-                                <li>${ element.amount }</li>
-                                <li>{ element.date }</li>
-                            </ul>
-                        </div>
-                    )
-                })}
+                return (
+                    <div key = { element.id }>
+                        <ul>
+                            <li>{ element.description }</li>
+                            <li>${ element.amount }</li>
+                            <li>{ element.date }</li>
+                        </ul>
+                    </div>
+                )
+            })}
+
+            {newCredits.map((element, index) => {
+                return (
+                    <div>
+                        <ul>
+                            <li>{ element.description }</li>
+                            <li>${ element.amount }</li>
+                            <li>{ element.date }</li>
+                        </ul>
+                    </div>
+                )
+            })}
+
+            <h3>Account Balance: ${accountBalance}</h3>
+            <input onChange={onChangeDescription} type="text" placeholder="Description" />
+            <input onChange={onChangeAmount} type="number" placeholder="Amount" />
+            <button onClick={addDebit}>New Creditnp</button>
         </div>
     )
 }
